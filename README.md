@@ -20,7 +20,7 @@ Movies are filled with clichés, recurring actions and persona archetypes, howev
 
 - `preprocessing_helper.py`: Contains helper functions used in both notebooks. 
 
-- `gpt_methods.ipynb`: Contains the code used to get the answer to the questions asked to GPT-3.5 about the romance tropes.
+- `gpt_methods.ipynb`: Contains the code used to get the answer to the questions asked to GPT-3.5 about the romance tropes and explains how the requests are made and the results stored.
 
 ### Proposed additional datasets: 
 - IMDB movie ratings: The IMDB ratings give us a measure of how movies are rated by current audiences. The dataset is constructed from IMDB users since 1990 and overlap with ca. 55'000 movies from the CMU dataset (against 8000 box office revenue values in the CMU dataset). The dataset used to obtain the ratings is IMDB's data dump. Information about it can be found on https://developer.imdb.com/non-commercial-datasets/ : `imdb_ratings.tsv` is used to obtain the number of votes and the ratings for each movie. After preprocessing `movie.metadata.augmented.tsv` contains the movies merged with their ratings.
@@ -53,7 +53,7 @@ The code from [Bamman, O'Connor and Smith, "Learning Latent Personas of Film Cha
 
 **Step 4: Plot analysis preprocessing - Binary search on romantic movies with GPT-3.5:**
 
-Elements from movie plots are extracted by asking the GPT-3.5 API binary questions about the movie tropes in our dataset. GPT-3.5 then must output 0 for False, 1 for True and 2 for unknown. The questions must allow for no interpretation, else the results might vary according to previously asked questions.
+Elements from movie plots are extracted by asking the GPT-3.5 API binary questions about the movie tropes in our dataset. GPT-3.5 then must output 0 for False, 1 for True and 2 for unknown. We obtain around 6000 movies that we can analyze, using the binary answers.
 
 #### Visualization and Analysis: 
 
@@ -103,7 +103,7 @@ The internal milestones are discussed every Tuesday and Friday until the project
 
 | Team Member     | Tasks |
 | ----------- | ----------- |
-| Robinson   | Integrating IMBD dataset, run code from CMU personas paper, questions on romance tropes for GPT, GPT API binary search |
+| Robinson   | Integrating IMDB dataset, run code from CMU personas paper, questions on romance tropes for GPT, GPT API binary search |
 | Sophie   | Exploratory data analysis, data preprocessing, initial data analysis      |
 | Eva | Exploratory data analysis, personas-genres assignment, statistics on ratings |
 | Florence | Exploratory data analysis, questions on general tropes for GPT, personas-genres statistical measures|
