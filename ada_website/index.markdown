@@ -10,7 +10,7 @@ excerpt: ""
 
 Who doesn't love falling in love? Especially when you can do it over and over again, by following actors on screen? But if everyone watches romantic movies, it is common knowledge that they are not all equals in terms of quality and plot. We love them for it, we hate them for it. 
 
-But what if we could find magical ingredients that makes a good romance movie? How many clichés, which archetypes, what reccurring actions? Wouldn't you like to know? Because we do, and here's in consecutive parts the story of romance movies.... 
+But what if we could find magical ingredients that makes a good romance movie? How many clichés, which archetypes, what recurring actions? Wouldn't you like to know? Because we do, and here's in consecutive parts the story of romance movies.... 
 Starting with []
 
 ## ROMANCE, ROMANCE?
@@ -35,8 +35,10 @@ Overall, what makes specific romantic movies more liked by larger audiences? To 
 
 So, let's get back to ratings analysis. 
 
-<!-- ## Test -->
-<!-- 
-insert image
-![Local Image](assets/fond.jpg) -->
+## Test
 
+![Logo](assets/logo.png)
+
+## Test 2
+
+<iframe src="C:/Users/Flo/Documents/EPFL/MA3/ada-2023-project-theredpandada5/ada_website/assets/pie_charts.html" width="800" height="600"></iframe>
