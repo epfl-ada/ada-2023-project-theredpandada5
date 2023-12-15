@@ -35,10 +35,24 @@ Overall, what makes specific romantic movies more liked by larger audiences? To 
 
 So, let's get back to ratings analysis. 
 
+
+## WHAT IF LOVE WAS ABOUT TIMING?
+### or when to release a romance movie
+
+We have seen that some movies are more liked than others, but what about the timing? Is there a specific time of the year when people are more likely to watch a romance movie?
+
+
+## 
+### 
+
 ## Test
 
 ![Logo](assets/logo.png)
 
 ## Test 2
+<div class="container">
+<iframe class="responsive-iframe" src="./assets/fond.jpg"></iframe>
+</div>
 
-<iframe src="C:/Users/Flo/Documents/EPFL/MA3/ada-2023-project-theredpandada5/ada_website/assets/pie_charts.html" width="800" height="600"></iframe>
+<img src="./assets/pie_charts_2.png" alt="Description of the image">
+<!-- <iframe src="./assets/pie_charts.html" width="800" height="600"></iframe> -->
