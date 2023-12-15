@@ -57,6 +57,10 @@ commonmark:
   options: ["SMART", "FOOTNOTES"]
   extensions: ["strikethrough", "autolink", "table"]
 
+# Set theme
+remote_theme: daviddarnes/alembic@main
+# epfl-ada/ada-2023-project-theredpandada5@flo
+
 # 4. Jekyll settings
 sass:
   style: compressed # Style compression
