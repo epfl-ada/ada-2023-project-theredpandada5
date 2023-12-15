@@ -38,8 +38,9 @@ def plot_gpt_answers_pie_charts(df, q_names):
 
     for r in range(4):
         for c in range(5):
-            ax[r,c].pie(df[f'q_{r*5+c}'].value_counts(),
-                        labels = df[f'q_{r*5+c}'].dropna().unique(),
+            counts = df[f'q_{r*5+c}'].value_counts()
+            ax[r,c].pie([counts[0], counts[1], counts[2]],
+                        labels = [0, 1, 2],
                         autopct=lambda p: '{:.1f}%'.format(p),
                         startangle=90, shadow=False)
             ax[r,c].set_title(q_names[r*5+c])
