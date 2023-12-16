@@ -58,6 +58,8 @@ We have seen that some movies are more liked than others, but what about the tim
 <!-- interactive plot inserted directly in the html file -->
 <iframe src="./assets/average_answer_over_time.html" width="800" height="600"></iframe>
 
+What about persona evolution? 
+
 
 ### WHAT IF LOVE WAS ABOUT THE OTHER GENRES?
 ### or in which context love flourishes

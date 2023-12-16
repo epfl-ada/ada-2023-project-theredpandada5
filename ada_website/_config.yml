@@ -107,7 +107,7 @@ defaults:
 encoding: utf-8 # Make sure the encoding is right
 lang: en-GB # Set the site language
 title: "Romance movies ADA" # Site name or title, also used in jekyll-seo-tag
-# logo: "/assets/logos/logo.svg" # Site logo, also used in jekyll-seo-tag
+logo: "./assets/logo.png" # Site logo, also used in jekyll-seo-tag
 description: "description" # Site description and default description, also used in jekyll-seo-tag
 url: "https://epfl-ada.github.io/ada-2023-project-theredpandada5" # Site url, also used in jekyll-seo-tag, initally https://alembic.darn.es/
 baseurl: "/ada_website"
