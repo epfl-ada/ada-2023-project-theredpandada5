@@ -41,8 +41,11 @@ plugins:
 
 # 3. Gem settings
 remote_theme: daviddarnes/alembic@main
-paginate: 2 # jekyll-paginate > items per page
-paginate_path: blog/page:num # jekyll-paginate > blog page
+
+# BLOG POSTS
+# paginate: 2 # jekyll-paginate > items per page
+# paginate_path: blog/page:num # jekyll-paginate > blog page
+
 jekyll-mentions: https://twitter.com # jekyll-mentions > service used when @replying
 # twitter:
 #   username: DavidDarnes # jekyll-seo-tag > Owners twitter username
@@ -106,8 +109,8 @@ lang: en-GB # Set the site language
 title: "Romance movies ADA" # Site name or title, also used in jekyll-seo-tag
 # logo: "/assets/logos/logo.svg" # Site logo, also used in jekyll-seo-tag
 description: "description" # Site description and default description, also used in jekyll-seo-tag
-url: "https://epfl-ada.github.io/" # Site url, also used in jekyll-seo-tag, initally https://alembic.darn.es/
-baseurl: "ada-2023-project-theredpandada5/ada_website/"
+url: "https://epfl-ada.github.io/ada-2023-project-theredpandada5" # Site url, also used in jekyll-seo-tag, initally https://alembic.darn.es/
+baseurl: "/ada_website"
 # repo: "https://github.com/daviddarnes/alembic"
 # email: "me@daviddarnes.com"
 # disqus: "alembic-1" # Blog post comments, uncomment the option and set the site ID from your Disqus account
@@ -152,7 +155,7 @@ navigation_footer:
 social_links: # Appears in sidebar. Set the urls then uncomment and comment out as desired
   # Twitter: https://twitter.com/DavidDarnes
   # LinkedIn: https://www.linkedin.com/in/daviddarnes
-  GitHub: https://github.com/epfl-ada/ada-2023-project-theredpandada5
+  # GitHub: https://github.com/epfl-ada/ada-2023-project-theredpandada5
   # link: https://darn.es
   # RSS: /feed.xml
 

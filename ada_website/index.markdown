@@ -40,17 +40,33 @@ So we have tropes. What about the personas? Let's get some help here. Extractig 
 Let's get back to the basics. How do you evaluate if a movie is good? Ratings, obviously! Or box office revenue... Which is missing in 80% of the movies. As the correlation between the ratings and the box office revenue is weak, we will focus on the ratings as success indicator. Take the CMU dataset, add a pinch of IMDB ratings, and you get a dataset with 11'599 movies having romance in their genre and their ratings.
 Users can rate movies on IMDB only since 1990, we therefore get a more modern perspective on the older movies. Bingo, that's a measure of love... Isn't it? For love movies anyways. 
 
-Overall, what makes specific romantic movies more liked by larger audiences? To answer this difficult question, let's use GPT-3.5 API answers about plot elements and "Learning Latent Personas of Film Characters". Everything is ready to analyze the ratings of romantic movies, as well as movies with some popular genres paired up with romance, over time!
+Overall, what makes specific romantic movies more liked by larger audiences? To answer this difficult question, let's use GPT-3.5 API answers about plot elements and "Learning Latent Personas of Film Characters". Are there any specific questions that significantly correlate with the ratings? Turns out, there are! Have a closer look to the interrupted wedding, ennemies to lover, social status and serious illness tropes. The confidence interval of the ratings when GPT's answer is yes or no is not overlapping. So people don't like interruped weddings, but they do like social status differences! That's a start. 
 
-So, let's get back to ratings analysis. 
+<!-- interactive plot inserted directly in the html file -->
+<!-- <iframe src="./assets/average_rating_conf_int_questions.html" width="800" height="600"></iframe> -->
+
+Everything is now ready to analyze the ratings of romantic movies, as well as movies with some popular genres paired up with romance, over time!
+
 
 
 ## WHAT IF LOVE WAS ABOUT TIMING?
 ### or when to release a romance movie
 
-We have seen that some movies are more liked than others, but what about the timing? Is there a specific time of the year when people are more likely to watch a romance movie?
+We have seen that some movies are more liked than others, but what about the timing? Is there a specific time of the year when people are more likely to watch a romance movie? A specific year in which some trope or persona is more popular? If we plot the average positive answers over time, we can observe that besides before the years 1920 -- where there are not enough movies to have a significant average -- the average positive answers are quite stable over time. Interrupted weddings, despite being the most hated trope, is still the most popular one over time. 
+
+<!-- interactive plot inserted directly in the html file -->
+<!-- <iframe src="./assets/average_answer_over_time.html" width="800" height="600"></iframe> -->
 
 
-## 
-### 
+## WHAT IF LOVE WAS ABOUT THE OTHER GENRES?
+### or in which context love flourishes
+
+Movies can also be classified as romantic alonsgside other genres. 
+
+## HOW CAN WE MAKE THE PERFECT ROMANCE MOVIE?
+### or turns out, it's not that easy
+
+We all know romance movies, their clichés. We like that they are predictable. But maybe that's not all. Maybe it isn't enough to know the trope, the archetypes for the persona, the timing, the associated genres and even a combination of all of these. 
+
+There may be no universal perfect love story. Everyone loves a different plot at a different time, and that's actually not so surprising. Even if we explain at best []% of the variance of the ratings, we can't explain it all. 
 
