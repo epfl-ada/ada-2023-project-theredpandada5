@@ -7,20 +7,21 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
+gem "jekyll-remote-theme", "~> 0.4.3"
+
 gem "rubyzip", "~> 2.3.0"
 gem "jekyll-sitemap"
-gem "jekyll-mentions"
+gem "jekyll-mentions", "~> 1.6.0"
 gem "jekyll-paginate"
-gem "jekyll-seo-tag"
+gem "jekyll-seo-tag", "~> 2.8.0"
 gem "jekyll-redirect-from"
 gem "jekyll-sass-converter"
 gem "jekyll-include-cache"
 gem "jekyll-commonmark"
 gem "jekyll-relative-links"
-gem "jekyll-remote-theme"
 gem "jemoji"
 
-gem "jekyll", "~> 4.3.2"
+gem "jekyll", "~> 	3.9.3" #"~> 4.3.2"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 # gem "minima", "~> 2.5"
 # gem "academic-jekyll-theme"
@@ -30,16 +31,16 @@ gem "jekyll", "~> 4.3.2"
 # gem "jekyll-theme-quartz"
 # gem "jekyll-theme-ethereal" # well no
 # gem "beautiful-jekyll-theme"
-# gem "jekyll-remote-theme"
-# gem "al-folio", "~> 2.5"
+# gem "al-folio"
 
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
-# gem "github-pages", group: :jekyll_plugins
+gem "github-pages", group: :jekyll_plugins
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
+  gem "jekyll-remote-theme", "~> 0.4.3"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

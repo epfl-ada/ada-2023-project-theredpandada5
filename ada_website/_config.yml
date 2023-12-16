@@ -28,6 +28,7 @@ exclude:
 
 # 2. Installed Gems
 plugins:
+- jekyll-remote-theme
 - jekyll-sitemap
 - jekyll-mentions
 - jekyll-paginate
@@ -37,9 +38,9 @@ plugins:
 - jekyll-commonmark
 - jekyll-include-cache
 - jemoji
-- jekyll-remote-theme
 
 # 3. Gem settings
+remote_theme: daviddarnes/alembic@main
 paginate: 2 # jekyll-paginate > items per page
 paginate_path: blog/page:num # jekyll-paginate > blog page
 jekyll-mentions: https://twitter.com # jekyll-mentions > service used when @replying
@@ -105,8 +106,8 @@ lang: en-GB # Set the site language
 title: "Romance movies ADA" # Site name or title, also used in jekyll-seo-tag
 # logo: "/assets/logos/logo.svg" # Site logo, also used in jekyll-seo-tag
 description: "description" # Site description and default description, also used in jekyll-seo-tag
-url: "https://epfl-ada.github.io/ada-2023-project-theredpandada5/ada_website/" # Site url, also used in jekyll-seo-tag, initally https://alembic.darn.es/
-baseurl: ""
+url: "https://epfl-ada.github.io/" # Site url, also used in jekyll-seo-tag, initally https://alembic.darn.es/
+baseurl: "ada-2023-project-theredpandada5/ada_website/"
 # repo: "https://github.com/daviddarnes/alembic"
 # email: "me@daviddarnes.com"
 # disqus: "alembic-1" # Blog post comments, uncomment the option and set the site ID from your Disqus account
