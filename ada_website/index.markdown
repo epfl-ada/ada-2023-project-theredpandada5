@@ -66,17 +66,18 @@ We have seen that some movies are more liked than others, but what about the tim
 <!-- interactive plot inserted directly in the html file -->
 <iframe src="./assets/average_answer_over_time.html" width="800" height="600"></iframe>
 
-What about persona evolution?
+What about persona evolution? It seems like some persona are more stable over the years than other. 
+The sudden drop in all persona around the year 2010 could be due to the dataset goes only to the year 2013.
 
 <iframe src="./assets/personas_over_time_all_together.html" width="800" height="600"></iframe>
 
-<!-- NOTE: removed the second plot because redundant with the first. -->
+<!-- NOTE: removed the second plot because redundant with the first. I like being able to chose but it's good to have an overvew for all -->
 <!-- <iframe src="./assets/personas_over_time_dropdown_menu.html" width="800" height="600"></iframe> -->
 
 ### WHAT IF LOVE WAS ABOUT THE OTHER GENRES?
 ### or in which context love flourishes
 
-Movies can also be classified as romantic alongside other genres.
+Movies can also be classified as romantic alongside other genres. 
 
 ### HOW CAN WE MAKE THE PERFECT ROMANCE MOVIE?
 ### or turns out, it's not that easy

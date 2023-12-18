@@ -4,7 +4,14 @@
 
 ### Abstract
 
-Movies are filled with clichés, recurring actions and persona archetypes, however these vary greatly amongst different genres. From the CMU dataset we have information on the movies, some of their characters and the plot summaries. For this study, we focus on romantic movies as many movies independent of genre contain at least one romantic subplot. Users can rate movies on IMDB only since 1990, we therefore get a more modern perspective on the older movies. We want to analyze what makes specific romantic movies more liked by larger audiences. To achieve this, the GPT-3.5 API is queried using binary questions to obtain answers about plot elements and "Learning Latent Personas of Film Characters" is used to extract a persona type for characters in specific movies. We can then analyze the ratings of romantic movies, as well as movies with some popular genres paired up with romance, over time.
+Who doesn't love falling in love? Especially when you can do it over and over again, by following actors on screen? We all have seen romance movies, but the simple fact that two people fall in or out of love with each other does not equal a good quality story. 
+These are filled with clichés, recurring actions and persona archetypes. 
+Hence, what if we could find magical ingredients that make a good romance movie? How many clichés are necessary, which archetypes, what recurring actions? Wouldn't you like to know? We do, using plots, persona and genres. 
+We begin by preprocessing the dataframe, augmenting it for project completion. Our focus then shifts to creating a regression model to predict the success of romantic movies, followed by an analysis of their evolution over time and in the context of the other movie genre.
+
+From the CMU dataset we have information on the movies, some of their characters and the plot summaries. For this study, we focus on romantic movies as many movies independent of genre contain at least one romantic subplot. We use GPT-3.5 API queries using binary questions about plot elements and "Learning Latent Personas of Film Characters" is used to extract persona type for characters in romantic movies. We can then analyze the ratings of romantic movies, as well as movies with some popular genres paired up with romance, over time.
+
+Follow us in discorvery of the recipe for a good romance movie!
 
 ### Research Questions
 1. How do romantic movies evolve over time (ratings, personas, tropes)? 
@@ -69,7 +76,6 @@ For the fourth research question, we filter the dataframes to contain movies wit
 
 
 ### Proposed timeline and Internal Milestones
-
 
 The internal milestones are discussed every Tuesday and Friday until the project deadline
 
