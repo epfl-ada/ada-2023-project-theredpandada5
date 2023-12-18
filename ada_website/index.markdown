@@ -7,7 +7,7 @@ feature_text: |
 feature_image: assets/forest.jpg #"https://picsum.photos/1300/400?image=336"
 excerpt: ""
 ---
-TESTTTTTTT
+TEST 2
 
 Who doesn't love falling in love? Especially when you can do it over and over again, by following actors on screen? We all have seen romance movies, but the simple fact that two people fall in or out of love with each other does not equal a good quality story. And paradoxically, an unoriginal story can be exactly what we want to watch. Then what is it? Do we love them or hate them for being predictable? 
 
