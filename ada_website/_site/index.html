@@ -170,9 +170,7 @@
 
     <h1>Romance movies, the recipe that goes straight to the heart</h1>
 
-    <p>SITE WEB TEST</p>
-
-<p>Who doesn’t love falling in love? Especially when you can do it over and over again, by following actors on screen? We all have seen romance movies, but the simple fact that two people fall in or out of love with each other does not equal a good quality story. And paradoxically, an unoriginal story can be exactly what we want to watch. Then what is it? Do we love them or hate them for being predictable?</p>
+    <p>Who doesn’t love falling in love? Especially when you can do it over and over again, by following actors on screen? We all have seen romance movies, but the simple fact that two people fall in or out of love with each other does not equal a good quality story. And paradoxically, an unoriginal story can be exactly what we want to watch. Then what is it? Do we love them or hate them for being predictable?</p>
 
 <p>Hence, what if we could find magical ingredients that make a good romance movie? How many clichés are necessary, which archetypes, what recurring actions? Wouldn’t you like to know? We do. So there it is, the story of romance movies, through their plots, persona and genres….
 We begin by preprocessing the dataframe, augmenting it for project completion. Our focus then shifts to creating a regression model to predict the success of romantic movies, followed by an analysis of their evolution over time and in the context of the other genres of the movie.</p>
@@ -201,6 +199,168 @@ We were then able to generate questions about plot elements (such as “<em>Is t
 
 <p>So we have tropes. What about the personas? What if we could extract from the summaries the common archetypes for the characters in the movies? For example, is there a best friend that has an inexistent life beside providing advice on the romantic life of the protagonist, or the emotionally unavailable character that hides a soft heart underneath many layers of deception and no apparent feelings. Let’s get some help here. Extracting latent persona from the summaries, with the code from <a href="http://aclweb.org/anthology/P/P13/P13-1035.pdf">Bamman, O’Connor and Smith, “Learning Latent Personas of Film Characters” (ACL 2013)</a>, we therefore assign a persona type to characters. 
 The technique is called Latent Dirichlet Allocation, LDA in short, which gives a probability distribution of the documents over the topics. This unsupervised technique allowed us to extract 20 persona and assign them to the characters, represented by persona types corresponding to the maximum of the vector of probabilities of persona types for each character. This vector is defined over 30 topics – words that cluster together – on agents, patients and modifiee. An <em>agent</em> is something the persona does, a <em>patient</em> is what is done to the persona, and a <em>modifiee</em> are adjectives associated with the persona.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Theme</th>
+      <th>Words</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Mystery Drama</td>
+      <td>son, able, dead, detective, director, alive, former, agent, suspicious, about</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Communication and Relationships</td>
+      <td>tell, love, see, ask, give, meet, confront, invite, call, talk</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Supernatural Adventure</td>
+      <td>child, judge, fiancé, pirate, soul, human, spirit, teenager, waitress</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Family Dynamics</td>
+      <td>mother, wife, son, baby, aunt, grandmother, president, single, pregnant, dead</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Identity and Diversity</td>
+      <td>man, young, boss, old, soldier, other, guest, gay, angel, client</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Action and Investigation</td>
+      <td>kill, tell, save, find, arrest, name, bring, force, warn, release</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Emotional Relationships</td>
+      <td>tell, go, ask, say, love, want, give, get, come, walk</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Life Choices and Actions</td>
+      <td>leave, take, see, be, find, run, have, know, make, look</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Relationship Milestones</td>
+      <td>get, make, break, introduce, go, propose, end, spend, sleep, pick</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Giving and Receiving</td>
+      <td>give, take, reveal, show, convince, offer, help, inform, keep, hire</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Life’s Crossroads</td>
+      <td>die, give, want, come, refuse, leave, suffer, make, commit, welcome</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Emotions and States</td>
+      <td>that, pregnant, one, angry, unable, happy, able, about</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Family Members</td>
+      <td>husband, brother, kid, grandfather, younger, priest, twin, artist, older</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>Romantic Connections</td>
+      <td>marry, meet, fall, attract, send, name, engage, involve, reunite, find</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>Decisions and Actions</td>
+      <td>tell, have, try, arrive, offer, invite, send, arrange, believe, ask</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>Family Business Drama</td>
+      <td>father, parent, maya, phane, villa, own, late, dead, conservative, businessman</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>Struggle and Fight</td>
+      <td>capture, kill, send, take, rescue, lead, defeat, attack, return, free</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>Life Changes</td>
+      <td>have, live, visit, raise, name, care, leave, kill, move, reconcile</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>Artistic Pursuits</td>
+      <td>perform, play, sing, arrive, offer, conclude, quit, win, confide, dance</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>Social Roles</td>
+      <td>officer, uncle, owner, police, lady, bride, servant, new, vampire</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>School Life and Relationships</td>
+      <td>friend, student, best, boyfriend, old, school, teacher, girlfriend, character, high</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>Love and Relationships</td>
+      <td>marry, love, fall, leave, arrange, write, visit, propose, reject, inform</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>Discovery and Revelation</td>
+      <td>find, try, fall, manage, arrive, discover, attempt, refuse, die, learn</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>Diverse Female Characters</td>
+      <td>woman, daughter, young, beautiful, girl, lover, neighbor, cousin, wife, wealthy</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>Diverse Male Characters</td>
+      <td>boy, doctor, princess, worker, dad, villager, young, stranger, gay, Christian</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>Life’s Journeys</td>
+      <td>have, meet, decide, be, try, begin, want, find, realize, get</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>Criminal Activities</td>
+      <td>kill, shoot, confront, steal, beat, inform, drive, escape, attack, send</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>Royal Intrigue</td>
+      <td>king, de, son, captain, soldier, guard, master, prince, thug, dead</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>Historical Context</td>
+      <td>girl, sister, king, prostitute, little, musketeer, diner, older, native, younger</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>Life’s Movements</td>
+      <td>go, meet, return, come, live, arrive, join, stay, work, visit</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>What stands out?</p>
 

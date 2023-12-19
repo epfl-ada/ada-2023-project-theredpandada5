@@ -7,8 +7,6 @@ feature_text: |
 feature_image: assets/forest.jpg #"https://picsum.photos/1300/400?image=336"
 excerpt: ""
 ---
-SITE WEB TEST 2
-
 Who doesn't love falling in love? Especially when you can do it over and over again, by following actors on screen? We all have seen romance movies, but the simple fact that two people fall in or out of love with each other does not equal a good quality story. And paradoxically, an unoriginal story can be exactly what we want to watch. Then what is it? Do we love them or hate them for being predictable? 
 
 Hence, what if we could find magical ingredients that make a good romance movie? How many clichés are necessary, which archetypes, what recurring actions? Wouldn't you like to know? We do. So there it is, the story of romance movies, through their plots, persona and genres....
@@ -38,6 +36,41 @@ Let's quickly mention Harry Potter here. It indeed contains a romantic subplot, 
 
 So we have tropes. What about the personas? What if we could extract from the summaries the common archetypes for the characters in the movies? For example, is there a best friend that has an inexistent life beside providing advice on the romantic life of the protagonist, or the emotionally unavailable character that hides a soft heart underneath many layers of deception and no apparent feelings. Let's get some help here. Extracting latent persona from the summaries, with the code from [Bamman, O'Connor and Smith, "Learning Latent Personas of Film Characters" (ACL 2013)](http://aclweb.org/anthology/P/P13/P13-1035.pdf), we therefore assign a persona type to characters. 
 The technique is called Latent Dirichlet Allocation, LDA in short, which gives a probability distribution of the documents over the topics. This unsupervised technique allowed us to extract 20 persona and assign them to the characters, represented by persona types corresponding to the maximum of the vector of probabilities of persona types for each character. This vector is defined over 30 topics – words that cluster together – on agents, patients and modifiee. An *agent* is something the persona does, a *patient* is what is done to the persona, and a *modifiee* are adjectives associated with the persona. 
+
+| Topic | Theme                                 | Words                                             |
+|-------|---------------------------------------|---------------------------------------------------|
+| 0     | Mystery Drama                        | son, able, dead, detective, director, alive, former, agent, suspicious, about |
+| 1     | Communication and Relationships      | tell, love, see, ask, give, meet, confront, invite, call, talk |
+| 2     | Supernatural Adventure               | child, judge, fiancé, pirate, soul, human, spirit, teenager, waitress |
+| 3     | Family Dynamics                      | mother, wife, son, baby, aunt, grandmother, president, single, pregnant, dead |
+| 4     | Identity and Diversity               | man, young, boss, old, soldier, other, guest, gay, angel, client |
+| 5     | Action and Investigation             | kill, tell, save, find, arrest, name, bring, force, warn, release |
+| 6     | Emotional Relationships              | tell, go, ask, say, love, want, give, get, come, walk |
+| 7     | Life Choices and Actions             | leave, take, see, be, find, run, have, know, make, look |
+| 8     | Relationship Milestones              | get, make, break, introduce, go, propose, end, spend, sleep, pick |
+| 9     | Giving and Receiving                 | give, take, reveal, show, convince, offer, help, inform, keep, hire |
+| 10    | Life's Crossroads                    | die, give, want, come, refuse, leave, suffer, make, commit, welcome |
+| 11    | Emotions and States                  | that, pregnant, one, angry, unable, happy, able, about |
+| 12    | Family Members                       | husband, brother, kid, grandfather, younger, priest, twin, artist, older |
+| 13    | Romantic Connections                 | marry, meet, fall, attract, send, name, engage, involve, reunite, find |
+| 14    | Decisions and Actions                | tell, have, try, arrive, offer, invite, send, arrange, believe, ask |
+| 15    | Family Business Drama                | father, parent, maya, phane, villa, own, late, dead, conservative, businessman |
+| 16    | Struggle and Fight                   | capture, kill, send, take, rescue, lead, defeat, attack, return, free |
+| 17    | Life Changes                         | have, live, visit, raise, name, care, leave, kill, move, reconcile |
+| 18    | Artistic Pursuits                    | perform, play, sing, arrive, offer, conclude, quit, win, confide, dance |
+| 19    | Social Roles                         | officer, uncle, owner, police, lady, bride, servant, new, vampire |
+| 20    | School Life and Relationships        | friend, student, best, boyfriend, old, school, teacher, girlfriend, character, high |
+| 21    | Love and Relationships               | marry, love, fall, leave, arrange, write, visit, propose, reject, inform |
+| 22    | Discovery and Revelation             | find, try, fall, manage, arrive, discover, attempt, refuse, die, learn |
+| 23    | Diverse Female Characters            | woman, daughter, young, beautiful, girl, lover, neighbor, cousin, wife, wealthy |
+| 24    | Diverse Male Characters              | boy, doctor, princess, worker, dad, villager, young, stranger, gay, Christian |
+| 25    | Life's Journeys                      | have, meet, decide, be, try, begin, want, find, realize, get |
+| 26    | Criminal Activities                  | kill, shoot, confront, steal, beat, inform, drive, escape, attack, send |
+| 27    | Royal Intrigue                       | king, de, son, captain, soldier, guard, master, prince, thug, dead |
+| 28    | Historical Context                   | girl, sister, king, prostitute, little, musketeer, diner, older, native, younger |
+| 29    | Life's Movements                     | go, meet, return, come, live, arrive, join, stay, work, visit |
+
+
 
 What stands out?
 
