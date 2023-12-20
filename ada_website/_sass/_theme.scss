@@ -1,13 +1,34 @@
 // Structural elements
 body {
     background: $backgroundColour;
+    font-size: 20px;
     color: $bodyColour;
     height: 100%;
     display: flex;
     @include flex-direction(column);
     overflow-x: hidden;
+      
+    p {
+      margin-bottom: 0em !important;
+      margin-top: 0em !important;
+      margin:0em !important; // Adjust this value to your preference
+      padding-top:0 !important;
+      padding-bottom: 0 !important;
+      line-height: 1.3 !important;
+      text-align: justify;
+      // other properties...
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-bottom: -2em !important;
+      margin-top: -2em !important;
+      margin:0em !important; // Adjust this value to your preference
+      padding-top:0 !important;
+      padding-bottom: 0 !important;
+      // other properties...
+    }
   }
-  
+
+
   .container {
     width: 90%;
     max-width: 1200px;
@@ -28,7 +49,7 @@ body {
       @include flexbox;
       @include flex-direction(row);
       @include justify-content(space-between);
-      padding: 1rem 0;
+      padding: 0.5rem 0;
       @include breakpoint(break-1) {
         @include align-items(center);
       }
@@ -45,8 +66,8 @@ body {
   
   .feature {
     padding-bottom: .4rem;
-    margin-bottom: 1.6rem;
-    text-align: center;
+    margin-bottom: 0.6rem; //was 1.6rem
+    text-align: justify;
     background: $featureBackgroundColour;
     background-size: cover;
     background-position: center;
@@ -122,7 +143,7 @@ body {
     @include flex-direction(column);
     @include flex(1, 0, auto);
     @include justify-content(flex-start);
-    margin-bottom: 1.6rem;
+    margin-bottom: 0.6rem; //was 1.6rem
     @include breakpoint(break-1) {
       @include justify-content(center);
       @include flex-direction(row);
