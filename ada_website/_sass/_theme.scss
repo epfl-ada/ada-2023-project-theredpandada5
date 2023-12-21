@@ -19,12 +19,32 @@ body {
       // other properties...
     }
     h1, h2, h3, h4, h5, h6 {
-      margin-bottom: -2em !important;
-      margin-top: -2em !important;
       margin:0em !important; // Adjust this value to your preference
       padding-top:0 !important;
-      padding-bottom: 0 !important;
+      padding-bottom: 0.25em !important;
       // other properties...
+    }
+    table {
+      border-collapse: collapse;
+      width: 90%; /* You can adjust the width as needed */
+      margin: auto; /* Center the table on the page */
+      font-size: 10px;
+      line-height: 1.3 !important;
+      margin-bottom: 0.5em !important;
+      margin-top: 0.25em !important;
+    }
+
+    /* Style for table borders */
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    /* Center text within cells */
+    th, td {
+      text-align: center;
+      padding: 0px; /* Add some padding for better appearance */
+      padding-top:1px !important;
+      padding-bottom: 1px !important;
     }
   }
 
