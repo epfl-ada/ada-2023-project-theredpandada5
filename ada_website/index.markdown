@@ -26,7 +26,7 @@ With all this data, what if we could find magical ingredients that make a good r
 
 CMU dataset contains information on the movies themselves, some of their characters and the plot summaries. For this study, as mentioned before, we focus on romantic movies as many movies, independent of genre, contain at least one romantic subplot. We can thus use movies containing romance in their genres. But is it enough?
 
-Love is in the air for most movies, this is why we try to discriminate between movies containing romance, and romance movies.
+Love is in the air for most movies, this is why we try to discriminate between *movies containing romance*, and *romance movies*.
 
 The plot summaries might not contain all the necessary information about the story to answer our most burning questions. Here is where the GPT-3.5 API comes to the rescue! GPT was trained on a lot of Internet data. This likely includes valuable information about movies from our dataset. Let’s take advantage of this instead of using an approximate word detection from the summaries. 
 We asked GPT boolean questions about plot elements (such as "*Is there a best friend to lovers trope?*" or "*Is there an empowered woman having regrets?*") to characterize the movies.
@@ -36,9 +36,9 @@ In the romance domain, there are quite a lot of tropes that are used over and ov
  
 For instance, let's take one of the greatest romance movies: *The Notebook*. It could contain lots of different tropes: enemies to lovers, a grand reunion, and a sad ending. But the enemies to lovers in this movie was one sided as the male protagonist Noah was immediately infatuated with Allie. From his perspective it was love at first sight, therefore answering yes or no to either question could be considered correct. 
 
-Remember when we said that we want to differentiate between romantic subplots and romance as a protagonist? Well, let's talk about *Harry Potter*. It indeed contains a romantic subplot, but that does not make it a romance movie. In general, movies such as Harry Potter, Pirates of the Caribbeans, or Spirit, are marked by GPT as containing no romance cliché at all. For our analysis, we thus only consider movies with at least 1 positive answer over the 20 questions.
+Remember when we said that we want to differentiate between romantic subplots and romance as the main subject? Well, let's talk about *Harry Potter*. It indeed contains a romantic subplot, but that does not make it a romance movie. In general, movies such as Harry Potter, Pirates of the Caribbeans, or Spirit, are marked by GPT as containing no romance cliché at all. For our analysis, we thus only consider movies with at least 1 positive answer over the 20 questions.
 
- Let's visualize the results of the proportion of answers, with 0 being a *no* answer and 1 a *yes* answer to the binary question.
+ Let's visualize the results of the proportion of answers, with 0 being a **no** answer and 1 a **yes** answer to the binary question.
 <!-- interactive plot inserted directly in the html file -->
 <iframe src="./assets/pie_charts.html" width="800" height="600"></iframe>
 
@@ -131,10 +131,10 @@ What about the personas  evolution? The following plot illustrates the distribut
 
 Overall, what makes specific romantic movies more liked by larger audiences? To answer this difficult question, there are several angles that we can take. We choose to describe a movie through  a combination of plot elements and personas.
 
-The script contains specific plot elements that we can partly unwrap using the questions fed to GPT3.5.  The characters, or specifically the character types, can also give us hints about what happens in a movie. Lets take for instance the presence of a heartthrob bad boy. Does that make us like the movies more? 
+The script contains specific plot elements that we can partly unwrap using the questions fed to GPT3.5.  The characters, or specifically the character types, can also give us hints about what happens in a movie. Let’s take for instance the presence of a heartthrob bad boy. Does that make us like the movies more? 
 Of course, we have no information about the visual aspects or the actors' performance. But it still might be that some specific personas or clichés have a significant importance on the ratings. 
 
-Turns out, there are! Have a closer look at the *interrupted wedding*, *enemies to lover*, *social status* and *serious illness* tropes. The confidence interval of the ratings when GPT's answer is yes or no is non-overlapping. People do not seem to like interrupted weddings. Maybe it's too dramatic? Or perhaps there’s another reason, since they seem to like impossible romance due to social status, and Romeo and Juliet are proof that it can be just as dramatic!
+As it turns out, there are! Have a closer look at the *interrupted wedding*, *enemies to lover*, *social status* and *serious illness* tropes. The confidence interval of the ratings when GPT's answer is yes or no is non-overlapping. People do not seem to like interrupted weddings. Maybe it's too dramatic? Or perhaps there’s another reason, since they seem to like impossible romance due to social status, and Romeo and Juliet are proof that it can be just as dramatic!
 
 <iframe src="./assets/average_rating_conf_int_questions.html" width="800" height="600"></iframe>
 
@@ -161,7 +161,7 @@ However, the following variables were significant at the 5% level:
 - **Questions 0, 3, 18**, with respectively a negative, positive and positive correlation (although low for each question).
 - The **release date** of the movie, which negatively correlates with the ratings.
 - The **runtime** of the movie, also positively correlated with the rating.
-- **Persona 4, 8, 12, 13** with respectively positive, negative, negative and positive correlation (although low for each persona).
+- **Persona 0, 2, 4, 13, 17, 18, 19** which surprisingly all have positive correlation with the ratings (although low for each persona).
 
 We can at least draw one conclusion from this: the number of votes seems to significantly explain some variance in the ratings. For instance, as the following plot shows, movies with weddings stopped at the altar have a considerably lower number of votes, and they also have a lower score… That may be a problem! Or not? 
 
@@ -171,13 +171,13 @@ We can at least draw one conclusion from this: the number of votes seems to sign
 #### AND THAT’S A MATCH
 ###### or how to reduce the impact of observed covariates
 
-We have previously observed some statistically significant correlations. However, this remains an observational study, and movies have many confounders and a lot of variance. In order to get some conclusions out of this study, we are gonna make movies fall in love with their matches, following the principle of “*what belongs together comes together*”.
+We have previously observed some statistically significant correlations. However, this remains an observational study, and movies have many confounders and a lot of variance. In order to get some conclusions out of this study, we are gonna couple movies, following the principle of “*what belongs together comes together*”.
 
 What kind of confounders are we looking at? The tropes can influence each other. Also, as seen in the previous regression, the number of votes is positively correlated with the rating.
 To reduce these confounders, let's marry off our movies based on their most relevant clichés. To ensure ultimate happiness in their couplings, we also match them approximately on their respective number of votes. 
 
 Stopping a wedding and creating a heartthrob romance movie do not mingle well. The ratings are significantly worse (p-value of **0.0001**!). As for the other tropes, you might be more free to choose. The coefficients in the table indicate the impact of the trope on the rating, its value being by how much the average rating increases or decreases when the condition is present or not.
-We can observe that seven clichés actually influence our opinion on romance movies statistically (at a 95% CI-level)! (Although let’s not get ahead of ourselves, the coefficients are low for all  of them)
+We can observe that seven clichés actually influence our opinion on romance movies statistically (at a 95% CI-level)! (Although let’s not get ahead of ourselves, the coefficients are low for all of them)
 
 | Question | Question Theme | Number of Pairs | SMD Votes | SMD Year | Coefficient | P-Value|
 |----------|----------------------------------|--------------|-----------|----------|-------------|-----------|
@@ -203,7 +203,7 @@ As shown in the plot below, we can observe that some personas do have a causal i
 | 12 | Talkative Best Friend |1004         | 0.0726    | 0.1575   | -0.1672     | 0.0001    |
 | 13 | Detective Woman |148          | 0.0511    | 0.134    | 0.3182      | 0.0027    |
 
-One could wonder: why not try a matched study on both personas and genres? This could maybe lead to new incredible findings! Well, it turns out to give the exact same results. The same personas and the same questions remain relevant. So, for the sake of conciseness, we omit this table! 
+One could wonder: why not try a matched study on both personas **and** personas? This could maybe lead to new incredible findings! Well, it turns out to give the exact same results. The same personas and the same questions remain relevant. So, for the sake of conciseness, we omit this table! 
 
 
 #### MIRROR, MIRROR ON THE WALL, WHO IS THE MOST ACCURATE OF ALL?
@@ -211,11 +211,11 @@ One could wonder: why not try a matched study on both personas and genres? This 
 
 By considering ethics in our project, we aim to highlight ethical dilemmas and recognize the limitations, implications, and biases in our use of data. Love might not conquer all after all! First, considering the fairness of our study, we can critique film databases, emphasizing flaws such as sexism and a lack of ethnic diversity. Sexism can be explained by the fact that most producers, writers, cinematographers, and editors are men, leading to sometimes caricatural representations of women. Similarly, the lack of diversity results in an overrepresentation of western and white individuals. This correlation is evident not only on screen but also among those who participate in the film evaluation process through voting. In the article "Gender, writing and ranking in review forums: a case study of the IMDb" (Otterbacher, 2013), significant gender-based differences in critics' activity become apparent. Male critics show a stronger involvement compared to their female counterparts (with an average five times higher for men), and male comments are more appreciated by users. IMDb thus appears as a platform demonstrating a distinctly masculine orientation. 
 
-A second critical point in our data concerns the use of GPT. GPT provided us with results of highly variable quality for the films we were able to verify. A significant portion of the responses is indeed subject for debate because some movies focus on multiple love stories or only have romance as a subplot. Some responses are not necessarily incorrect but simply up for debate. The answers are allowed only to consist of yes or no, instead some responses are context dependent.  Thus, our answers may be considered inconsistent and unreliable for drawing real conclusions. An additional point to add to our ethical considerations is that our GPT-based responses required the use of servers and thus the consumption of resources. The last point is that since our project is about movies, if we were to keep up with more recent data (the data collection was stopped in 2012), it would pose a sustainability issue as the dataset and research would constantly need to be updated.
+A second critical point in our data concerns the use of GPT. GPT provided us with results of highly variable quality for the films we were able to verify. A significant portion of the responses is indeed subject for debate because some movies focus on multiple love stories or only have romance as a subplot. Some responses are not necessarily incorrect but simply up for debate. The answers are limited to yes or no, whereas some responses are context dependent. Thus, our answers may be considered inconsistent and unreliable for drawing real conclusions. An additional point to add to our ethical considerations is that our GPT-based responses required the use of servers and thus the consumption of resources. The last point is that since our project is about movies, if we were to keep up with more recent data (the data collection was stopped in 2012), it would pose a sustainability issue as the dataset and research would constantly need to be updated.
 
 
 #### HOW CAN WE MAKE THE PERFECT ROMANCE MOVIE?
-###### or turns out, it's not that easy
+###### or in the end, it's not that easy
 
 We all know romance movies and their clichés. We like them to be what we expect, but maybe not always. Maybe it isn't enough to know the tropes, the archetypes for the personas, the timing, the associated genres…
 
@@ -226,9 +226,11 @@ As for the results, a small summary seems necessary :
 - The audience seems to really enjoy impossible romances. Is it because of fate? Do we take pleasure in seeing lovers torn apart by this cruel world?
 - The classic Drama Woman persona is positively correlated with the ratings. We surely all enjoy seeing a drama queen fall in love! 
 - The Attractive Newcomer persona has a bad influence on the ratings. Maybe is it an incentive to never move out? 
-- The Talkative Bestfriend persona also tends to be bad for the movies. And for sure, we all hate this annoying and awkward friend that often breaks the romance with their unfunny jokes.
+- The Talkative Best Friend persona also tends to be bad for the movies. And for sure, we all hate this annoying and awkward friend that often breaks the romance with their unfunny jokes.
 - The Woman Detective persona has a lot of success! Who would object? We love gruesome murders and we love intense romance. What could possibly go wrong when mixing these two?
 
-Do not forget that these are only small findings. They might influence slightly how much we like a romance movie, but none of our factors ended up being a huge impacting factor (at best a +0.3 difference in ratings). Maybe you would like to find out further why that is? 
-We have a new suspect: people pleasing in the votes. Is our opinion scaled on that of others? 
+Do not forget that these are only small findings. They might influence slightly how much we like a romance movie, but none of our factors ended up being “huge” (at best a +0.3 difference in ratings). Our guess is that it might be an instance of group effect: once the first view ratings are given, people tend to stay within their range. 
 
+
+
+AND THEY LIVED HAPPILY EVER AFTER….
