@@ -1,19 +1,20 @@
 ---
 title: Romance movies, the recipe that goes straight to the heart
-feature_text: |
-  # Romance movies, the recipe that goes
-  # straight to the heart
-  ### or how to make a romance movie that people love
+feature_text:  |
+  # <span style="color: #BDC8CC;"> Romance movies, the recipe that goes <span>
+  # <span style="color: #BDC8CC;"> straight to the heart <span>
+  ### <span style="color: #BDC8CC;"> or how to make a romance movie that people love <span>
 feature_image: assets/forest.jpg #"https://picsum.photos/1300/400?image=336"
 excerpt: ""
 ---
 
-Who doesn't love falling in love? Especially when you can do it over and over again, by following actors on screen? We all have seen romance movies, but the simple fact that two people fall in or out of love with each other does not equal a good quality story. And paradoxically, an unoriginal story can be exactly what we want to watch. Then what is it? Do we love them or hate them for being predictable? 
+Who doesn't love falling in love? Especially when you can do it over and over again, by following actors on screen? We all have seen romance movies, but the simple fact that two people fall in or out of love with each other does not equal a good quality story. Paradoxically, an unoriginal story can be exactly what we want to watch. But then, what is it? Do we love these movies or do we hate them for being predictable?
 
-And what if we could find magical ingredients that make a good romance movie? How many clichés were necessary, which archetypes, what recurring actions? Wouldn't you like to know? We do. So there it is, the story of romance movies, through their plots, persona and put it all together....
-We begin by preprocessing the dataframe, augmenting it for project completion. The goal is creating a regression model to predict the success of romantic movies, followed by an analysis of their evolution over time and in the context of the other movie genres.
+Let's get back to the basics. How do you evaluate whether a movie is liked? Ratings, obviously! Or box office revenue... Which is missing in 80% of the movies. As the correlation between the ratings and the box office revenue is weak, we will focus on the ratings as a success indicator. Bingo, that's a measure of love... Isn't it? For romance movies anyways. Take the CMU dataset, add a pinch of IMDB ratings, and you get a dataset with 11'599 movies having ratings and romance in their genres.
+We are aware that users can only rate movies on IMDB only since 1990, but that might just get us a more modern perspective on the movies that came out before the 1990s.  
 
-<!-- ![Logo](assets/logo.png) -->
+And what if we could find magical ingredients that make a good romance movie? How many clichés are necessary, which archetypes make us watch, what recurring actions get us excited to finish the movie? Wouldn't you like to know? We do! Follow us along, while we try to uncover the secrets to romance by analyzing the plots and the personas individually and as a beautiful blend. 
+
 <p><div style="text-align: center; margin: 0px;">
   <img src="./assets/logo.png" style="width: 100px;" alt="Logo">
 </div></p>
@@ -21,25 +22,26 @@ We begin by preprocessing the dataframe, augmenting it for project completion. T
 #### ROMANCE, ROMANCE?
 ###### or the preprocessing story
 
-From the CMU dataset we have information on the movies themselves, some of their characters and the plot summaries. For this study, we focus on romantic movies as many movies independent of genre contain at least one romantic subplot. We can thus use movies containing romance in their genres. But is it enough?
-It is then hard to analyze which movie really is about love, and which only contains a secondary love story.
+From the CMU dataset we have information on the movies themselves, some of their characters and the plot summaries. For this study, as mentioned before, we focus on romantic movies as many movies independent of genre contain at least one romantic subplot. We can thus use movies containing romance in their genres. But is it enough?
 
-The plot summaries might not contain all the necessary information about the plots to answer our most burning questions. Here is where the GPT-3.5 API comes to the rescue. Trained on more extensive summaries, it can answer questions about the plots in a more precise manner than an approximate word detection from the summaries. 
-We were then able to generate questions about plot elements (such as "*Is there a best friend to lovers trope ?*" or "*Is there an empowered woman having regrets ?*") and obtain binary answers. 
+Love is in the air for most movies, this is why for this analysis we try to discriminate between movies with some romantic subplot and movies where romance is the protagonist.
+
+The plot summaries might not contain all the necessary information about the plots to answer our most burning questions. Here is where the GPT-3.5 API comes to the rescue. GPT is trained on the entirety of the internet, this likely includes the summaries that are in the CMU dataset. Let’s take advantage of this instead of using an approximate word detection from the summaries. 
+We asked it questions about plot elements (such as "*Is there a best friend to lovers trope ?*" or "*Is there an empowered woman having regrets ?*") and obtained binary answers. 
 
 Is GPT trustworthy? Mostly yes, but let’s examine a concrete example.
-In the romance domain there are quite a lot of tropes that can be seen over and over again. From the many tropes that we wanted to analyze, we tried refining the questions such that in most cases GPT3.5 would be able to answer with yes or no. However sometimes the answers are highly dependent on the perspective and are not that black and white. When we did not agree with the answer, we asked GPT3.5 for a justification, and often the justification made sense. For instance, let's take one of the most classic romance movies: *The Notebook*. In summary, it could contain lots of different tropes: enemies to lovers, a grand reunion, and a sad ending. But the enemies to lovers in this movie was one sided as the male protagonist Noah was immediately infatuated with the female protagonist. Therefore from his perspective it was love at first sight. 
-So answering yes or no to either question could be considered correct. 
+In the romance domain, there are quite a lot of tropes that are used over and over again. Some of them, GPT3.5 simply could not answer because they were too ambiguous, so we tried changing these questions as we wanted yes or no answers. But just like situationships, even the almost all-knowing GPT3.5 could not decide correctly. Other times, we would disagree with GPTs answers, but then the justifications made sense. For instance, let's take one of the greatest romance movies: *The Notebook*. It could contain lots of different tropes: enemies to lovers, a grand reunion, and a sad ending. But the enemies to lovers in this movie was one sided as the male protagonist Noah was immediately infatuated with Allie. From his perspective it was love at first sight, therefore answering yes or no to either question could be considered correct. 
 
-Let's also quickly mention *Harry Potter*. It indeed contains a romantic subplot, but that does not make it a romance movie. The same applies for other movies such as Spirit. So although these movies are great, removing them for our analysis is probably a better choice. We considered movies sufficiently romantic for our analysys when they contained more than 3 positive answers to the 20 questions asked.
+Remember when we said that we want to differentiate between romantic subplots and romance as a protagonist? Well, let's talk about *Harry Potter*. It indeed contains a romantic subplot, but that does not make it a romance movie. In general, movies such as Harry Potter, Pirates of the Caribbeans, or Spirit, are marked by GPT as containing no romance cliché at all. For our analysis, we thus only consider movies with at least 1 positive answer over the 20 questions.
+
  Let's visualize the results of the proportion of answers, with 0 being a *no* answer and 1 a *yes* answer to the binary question.
 <!-- interactive plot inserted directly in the html file -->
 <iframe src="./assets/pie_charts.html" width="800" height="600"></iframe>
 
-So we have tropes. What about the personas? What if we could extract from the summaries the common archetypes for the characters in the movies? For example, is there a best friend that has an inexistent life beside providing advice on the romantic life of the protagonist? What about the emotionally unavailable character, who hides a soft heart underneath many layers of deception?
- Let's get some help here. Extracting latent persona from the summaries, we assign a persona type to characters with the code from [Bamman, O'Connor and Smith, "Learning Latent Personas of Film Characters" (ACL 2013)](http://aclweb.org/anthology/P/P13/P13-1035.pdf), . 
+Now that we have the tropes, let’s see whether we can find personas!  What if we could extract the common archetypes for the characters in the movies from the summaries? For example, is there a best friend with no purpose beside providing advice on the romantic life of the protagonist? What about the emotionally unavailable character, hiding a soft heart underneath many layers of deception?
+Let's get some help here. Luckily, this has been done in [Bamman, O'Connor and Smith, "Learning Latent Personas of Film Characters" (ACL 2013)](http://aclweb.org/anthology/P/P13/P13-1035.pdf).
 
-The technique is called Latent Dirichlet Allocation, or LDA in short. This is a common unsupervised learning technique used over text data. In essence, its task is to extract the most important "topics" over a corpus. Topics can thus be represented as distributions over the vocabulary. The technique is again applied on the topics, yielding "personas", ie. distributions over the topics ! The topics we obtained are shown in the table below. 
+The technique is called Latent Dirichlet Allocation, or LDA in short. This is a common unsupervised learning technique used over text data. In essence, its task is to extract the most important "topics" over a corpus. Topics can thus be represented as distributions over the vocabulary. The technique is again applied on the topics, yielding "personas", ie. distributions over the topics ! The topics, which were classified with chat GPT and our imaginations, are presented in the table below. 
 
 | Topic    |   Theme                                 |   Words                                             |
 |-------|---------------------------------------|---------------------------------------------------|
@@ -74,72 +76,83 @@ The technique is called Latent Dirichlet Allocation, or LDA in short. This is a 
 | 28    | Historical Context                   | girl, sister, king, prostitute, little, musketeer, diner, older, native, younger |
 | 29    | Life's Movements                     | go, meet, return, come, live, arrive, join, stay, work, visit |
 
-We also make a distinction between agents, patients and modifiee : an *agent* is something the persona does, a *patient* is what is done to the persona, and a *modifiee* are adjectives associated with the persona.  
-
-For example, imagine we found the topics "Shoot", "Cooking","Spy", "Wedding", "Escape". We could say that a James Bond persona often escapes (agent), gets shot at (patient), and could be described as a spy (modifiee). We can observe for each persona the distribution of their agents over the used topics.
+We also make a distinction between agents, patients and modifiee : an *agent* is something the persona does, a *patient* is what is done to the persona, and a *modifiee* are adjectives associated with the persona. For example, if we look at the most common topics in the agents of the personas, we can see that "Life's crossroads" is very rarely used among all 20 personas. In contrast, a lot of personas seem to be greatly characterized by “Life’s journeys” topics! !
 
 <iframe src="./assets/topic_distrib_agents.html" width="800" height="600"></iframe>
 
-A more concrete exemple, here, would be persona 12, which is the most common persona based on the plot below. The patients involve Communication and Relationships, Life's Movements, Giving and Receiving, and Romantic Connections.
-The modifiee sheds light on the context, revealing that the narrative is likely set within a Family Mystery Drama. Various Emotions will play a significant role, and the inclusion of Diverse Female Characters suggests a diverse cast contributing to the family dynamic. Additionally, Artistic Pursuits may be intertwined with the family members' lives, adding creative elements to the storyline. This suggests a narrative deeply rooted in familial connections and the various challenges and experiences that come with it. Here is a summary:
+A more concrete exemple, here, would be persona 12, which is the most common persona based on the plot below.
+- The agents involve words such as *tell, ask, love, give, meet*. 
+- The patients are (for example) *tell, love, call, talk, ask*
+- The modifiees are *best, friend, student*. 
+This persona, with a bit of imagination, could be described as the **talkative best friend**. They do not involve any life-changing topics in any of their appearances. Nonetheless, they are important because they help the main protagonist succeed in their love life!
+
+Following this methodology, let’s assign a type to the most used personas, as you can see in the table below.
 
 | Persona | Representation | Agents | Patients | Modifiee |
 |---------|--------------------------|-------------------------------------|------------------------------------|--------------------------------------|
-| 0       | Mysterious Patriarch/Matriarch | 25, 7, 6, 29 | 13, 8, 29, 7 | 28, 11, 23, 0 |
-| 1       | Misunderstood Lover         | 25, 7, 29, 22 | 29, 7, 9, 13 | 24, 11, 20, 23 |
-| 2       | Otherworldly Lover          | 7, 22, 25, 6 | 5, 9, 26, 1 | 0, 11, 20, 4 |
-| 3       | Family Protector            | 9, 14, 6, 25 | 13, 9, 29, 1 | 23, 11, 4, 0 |
-| 4       | Drama Lover                 | 22, 25, 21, 29 | 13, 21, 9, 1 | 11, 23, 0, 20 |
-| 5       | Detective Lovers            | 25, 7, 8, 6 | 7, 8, 29, 13 | 20, 11, 23, 0 |
-| 6       | Emotionally Complex Protagonist | 25, 7, 6, 22 | 5, 29, 7, 1 | 12, 11, 0, 20 |
-| 7       | Mysterious Decisions        | 9, 22, 14, 7 | 5, 29, 13, 9 | 19, 11, 23, 0 |
-| 8       | Relationship Progression    | 25, 7, 22, 29 | 9, 13, 8, 1 | 11, 0, 23, 20 |
-| 9       | Emotional Lover             | 7, 25, 22, 29 | 17, 9, 7, 13 | 2, 23, 11, 0 |
-| 10      | Transformative Journey      | 25, 6, 7, 10 | 7, 1, 17, 9 | 3, 11, 23, 0 |
-| 11      | Communicative best friend   | 18, 25, 9, 7 | 7, 13, 18, 9 | 11, 20, 23, 0 |
-| 12      | Close-Knit Family           | 6, 25, 7, 29 | 1, 7, 8, 13 | 11, 20, 23, 0 |
-| 13      | Passionate Lovers           | 29, 22, 25, 7 | 5, 9, 7, 13 | 23, 11, 0, 20 |
-| 14      | Decision-Making Couple      | 25, 29, 7, 22 | 29, 13, 7, 9 | 23, 11, 3, 0 |
-| 15      | Business-Oriented Lovers    | 25, 7, 6, 29 | 13, 7, 1, 9 | 23, 11, 0, 20 |
-| 16      | Dilemma Couple              | 25, 7, 6, 10 | 29, 7, 1, 5 | 15, 11, 0, 23 |
-| 17      | External Environment Challenges | 7, 6, 25, 22 | 1, 7, 13, 29 | 11, 23, 0, 20 |
-| 18      | Artistic Romantics          | 7, 22, 25, 29 | 29, 7, 13, 9 | 4, 11, 23, 0 |
-| 19      | Socially Defined Lovers     | 22, 16, 7, 29 | 5, 16, 9, 29 | 27, 0, 11, 4 |
+| 2       | Adventurer    | 7, 22, 25, 6 | 5, 9, 26, 1 | 0, 11, 20, 4 |
+| 4       | Drama Woman             | 22, 25, 21, 29 | 13, 21, 9, 1 | 11, 23, 0, 20 |
+| 8       | Attractive Newcomer  | 25, 7, 22, 29 | 9, 13, 8, 1 | 11, 0, 23, 20 |
+| 12      | Talkative Best Friend        | 6, 25, 7, 29 | 1, 7, 8, 13 | 11, 20, 23, 0 |
+| 13      | Woman Detective   | 29, 22, 25, 7 | 5, 9, 7, 13 | 23, 11, 0, 20 |
+| 15      | Engaged Heart  | 25, 7, 6, 29 | 13, 7, 1, 9 | 23, 11, 0, 20 |
+| 19      | Action Hero   | 22, 16, 7, 29 | 5, 16, 9, 29 | 27, 0, 11, 4 |
 
-What stands out? It appears that the most common characters are 12 and 8. The least common character is 9. Only a few characters are represented overall, only a few are sufficient to explain 80% of the characters associated with a persona.  
+What stands out? It appears that the most common characters are 12 and 8. The least common character is 9. Only a few characters are well represented overall. 80% of the characters are associated with a persona within {2, 4, 8, 12, 15, 19}.
 
 <iframe src="./assets/prop_characters_by_personas.html" width="800" height="600"></iframe>
 
 
+#### TIME PASSES, BUT LOVE STAYS FOREVER
+###### or the impact of time on romance movies
+
+Audiences change  over time, and so does their taste. Let us have a look at the evolution of the plots and persona over time. Is there a specific year in which some tropes or personas  are more popular? If we plot the average positive answers over time, we can observe that besides before the years 1930 -- where there are not enough movies to have a significant average -- the average positive answers are quite stable over time. Interrupted weddings, despite being significantly correlated with lower ratings, is still the most common trope throughout time.
+
+<!-- interactive plot inserted directly in the html file -->
+<iframe src="./assets/average_answer_over_time.html" width="800" height="600"></iframe>
+
+What about the personas  evolution? The following plot illustrates the distribution of the most common persona over time, from the year 1930 as prior to that year the movies are not numerous enough for relevant statistics. We choose the six most common personas, {2, 4, 8, 12, 15, 19}, which represent roughly  80% of the characters. Note how some tendencies revert: persona 2 which was predominant in the 40s-50s seems to leave more space to persona 12 over time. Is this a hint at WWII? Persona 2 is associated with a need for mystery drama, discovery and criminal activities.
+
+<iframe src="./assets/common_personas_over_time_normalize.html" width="800" height="600"></iframe>
+
 
 #### HOW MUCH DO YOU LOVE ME?
-###### or how to make a regression that (doesn't) work
+###### or how to predict the ratings (or not)
 
-Let's get back to the basics. How do you evaluate whether a movie is liked? Ratings, obviously! Or box office revenue... Which is missing in 80% of the movies. As the correlation between the ratings and the box office revenue is weak, we will focus on the ratings as a success indicator. Bingo, that's a measure of love... Isn't it? For romance movies anyways. Take the CMU dataset, add a pinch of IMDB ratings, and you get a dataset with 11'599 movies having romance in their genre and their ratings.
-We are aware that users can only rate movies on IMDB only since 1990, but that might just get us a more modern perspective on the movies that came out before the 1990s. 
+Overall, what makes specific romantic movies more liked by larger audiences? To answer this difficult question, there are several angles that we can take. We choose to describe a movie through  a combination of plot elements and personas.
 
-Overall, what makes specific romantic movies more liked by larger audiences? To answer this difficult question, there are several angles that we can take since there are multiple layers in a movie. The script contains specific plot elements that we can unwrap partly using the GPT 3.5 API. The characters, or specifically the character types, can also give us hints about what happens in a movie. Lets take for instance the presence of a heartthrob bad boy. Does that make us like the movies more? The “Learning Latent Personas of Film Characters” might help us answer that. Of course we have no information about the visual aspects or the actors performance etc. Are there any specific questions that significantly correlate with the ratings? Turns out, there are! Have a closer look to the *interrupted wedding*, *enemies  to lover*, *social status* and *serious illness* tropes. The confidence interval of the ratings when GPT's answer is yes or no is not overlapping. People do not seem to like interrupted weddings. Maybe it's too dramatic? Instead they seem to like impossible love due to social status. 
+The script contains specific plot elements that we can partly unwrap using the questions fed to GPT3.5.  The characters, or specifically the character types, can also give us hints about what happens in a movie. Lets take for instance the presence of a heartthrob bad boy. Does that make us like the movies more? The paper “Learning Latent Personas of Film Characters” might help us answer that. 
+Of course, we have no information about the visual aspects or the actors' performance. But it might be that some specific personas or clichés have a significant importance on the ratings. 
+
+Turns out, there are! Have a closer look at the *interrupted wedding*, *enemies to lover*, *social status* and *serious illness* tropes. The confidence interval of the ratings when GPT's answer is yes or no is non-overlapping. People do not seem to like interrupted weddings. Maybe it's too dramatic? Or perhaps there’s another reason, since they seem to like impossible romance due to social status, and Romeo and Juliet are proof that it can be just as dramatic!
 
 <iframe src="./assets/average_rating_conf_int_questions.html" width="800" height="600"></iframe>
 
-Everything is ready now to begin unraveling possible secrets! What is the influence of tropes on the ratings? What about the persona present in the movies? And the two of them together? A linear model might do the trick. Starting with a simple model, we include only the movie revenue, runtime, number of votes and release date. However, the results are not as good as expected, with a R<span class="superscript">2</span> score of 26.4%. Another model with questions only doesn't explain a lot the rating of the movies. With cross-validation, we also can observe that we overfit. What if the model was the problem? RandomForest may be a solution. However, despite a higher R<span class="superscript">2</span>, cross-validation still indicates a large overfit. This seems to indicate that no simple model is able to predict success from only the plots!
+Similarly, we can compute these averages for the personas : 
+<iframe src="./assets/ratings_conf_int_personas.html" width="800" height="600"></iframe>
 
-The best regression results are presented below! As a take home message, the explained variance is not very high. However, the following variables were significant at the 5% level:   
-- the **number of votes**, positively correlated with the rating
-- questions 1, 3, 18, with respectively a negative, positive and positive correlation
-- the **release date** of the move, which negatively correlates with the ratings
-- the **runtime** of the movie, also positively correlated with the rating
+However, is it everything? No! Recall the main antagonist of ADA, the *mean monkey*. If we learned one thing in the course, it certainly is not to trust averages. We can now dive deeper into the data.
 
-| Model                | R<span class="superscript">2</span> |
+Let’s start unraveling! What is the influence of tropes on the ratings? What about the personas present in the movies? And what about the two of them as a couple (wink) ? A linear model might do the trick. Starting with a simple model, we include only the movie revenue, runtime, number of votes and release date. The results are tragic, a weak score of R<span class="superscript">2</span> score of 26.4%.  When we include our tropes results (GPT), it’s even worse. We overfit.  Not even a random forest can help. No simple model seems to be enough to explain love based on our questions! So predicting  the rating based on the trope is an unreachable dream…
+
+| Model                | R<span class="superscript">2</span>   |
 |----------------------|-------|
 | Simple model         | 0.264 |
 | Questions only       | 0.027 |
 | Personas only      | 0.05 |
-| Personas + simple model       | 0.212 |
+| Personas + simple model       | 0.213 |
 | Personas + questions | 0.063 |
-| Personas + questions + simple model | 0.248 |
+| Personas + questions + simple model | 0.249 |
 
-This allowed us to properly assess the impact of the number of votes on the ratings. For instance, weddings stopped at the altar have a considerably lower number of ratings, and they also have a lower score… That may be a problem. Or is it? 
+As a take home message, the explained variance is not very high. Good news, we are not robots and do not just rate movies according to some flow diagram! There are probably a lot of factors other than the personas present in a movie and whether or not 20 selected tropes are present that determine whether we like movies or not, like the actors, the filming, the music and countless others.
+
+However, the following variables were significant at the 5% level:   
+- The **number of votes**, positively correlated with the rating.
+- Questions 0, 3, 18, with respectively a negative, positive and positive correlation (although low for each question).
+- The **release date** of the movie, which negatively correlates with the ratings.
+- The **runtime** of the movie, also positively correlated with the rating.
+
+We can at least draw one conclusion from this: the number of votes seem to significantly explain some variance in the ratings. For instance, as the following plot shows, movies with weddings stopped at the altar have a considerably lower number of votes, and they also have a lower score… That may be a problem. Or is it? 
 
 <iframe src="./assets/nb_votes_conf_int_questions.html" width="800" height="600"></iframe>
 
@@ -147,89 +160,65 @@ This allowed us to properly assess the impact of the number of votes on the rati
 #### AND THAT’S A MATCH
 ###### or how to reduce the impact of observed covariates
 
-We have observed previously some correlation. However, this remains an observation study, movies have many confounders and a lot of variance. In order to get some conclusion out of this study, the movies themselves also should find love, following the principle of “what belongs together comes together”.
+We have previously observed some statistically significant correlations. However, this remains an observational study, and movies have many confounders and a lot of variance. In order to get some conclusion out of this study, the movies themselves also should find love, following the principle of “*what belongs together comes together*”.
 
-What kind of confounders are we looking at? Firstly, the plots can influence each other. The number of ratings also has a positive correlation with the rating, which has been seen previously. As some of the tropes are significantly associated with less votes, this is to be taken into account with an approximate matching on the number of vote.The exact matching of the movies is also done on the most relevant questions (as seen previously). 
+What kind of confounders are we looking at? The tropes can influence each other. Also, as seen in the previous regression, the number of votes is positively correlated with the rating.
+To reduce these confounders, we make an exact match on the most relevant clichés, and an approximate match on the number of votes.
 
-Weddings stopped at the altar then obtain significantly worse ratings, with a p-value of **0.008**! As for the other relevant questions, they are presented in the following table. We can observe three questions having a statistically significant (at a 95%-level) impact on ratings!
+Weddings stopped at the altar then obtain significantly worse ratings with a negative impact on the rating prediction corresponding to the negative coefficient in the table below, with a p-value of **0.0001**! As for the other relevant questions, they are presented in the following table. The coefficient indicates the impact of the trope on the rating, its value being by how much the average rating increases or decreases when the condition is present or not.
+We can observe that seven clichés have a statistically significant (at a 95%-level) impact on ratings! (although the coefficients are low for each of them)
 
-**Weddings stopped at the altar**, have a negative influence (corresponding to the coefficient indicated on the table below) on the ratings.
-Impossible romances because of different **social status** have a positive influence on the ratings.
+| Question | Question Theme | Number of Pairs | SMD Votes | SMD Year | Coefficient | P-Value|
+|----------|----------------------------------|--------------|-----------|----------|-------------|-----------|
+| 0        |Interrupted wedding          | 1852         | 0.0093    | 0.0033   | -0.1198     | 0.0001    |
+| 2        | Enemies to lovers                | 1194         | 0.0691    | 0.2486   | -0.0826     | 0.0241    |
+| 3        | Social status                    | 1237         | 0.0923    | 0.0572   | 0.0986      | 0.0063    |
+| 6        | Meet-cute                        | 1674         | 0.1094    | 0.0442   | 0.0736      | 0.0189    |
+| 15       | Fake dating		 | 639          | 0.0569    | 0.0668   | 0.1324      | 0.0088    |
+| 18       | Regretful empowered woman | 1512         | 0.0198    | 0.0612   | 0.1356 | 0.0 |
+| 19       | Reunion                          | 1092         | 0.065     | 0.0119   | 0.0814      | 0.0321    |
 
-| Question | Question Theme                   | Pairs Number | SMD Value | Coefficient | P-Value |
-|----------|----------------------------------|--------------|-----------|-------------|---------|
-| 0        | Interrupted wedding              | 1852         | 0.0093    | -0.1198     | 0.0001  |
-| 2        | Enemies to lovers                | 1064         | 0.1846    | -0.0826     | 0.0241  |
-| 3        | Social status                    | 1192         | 0.2322    | 0.0986      | 0.0063  |
-| 6        | Meet-cute                        | 1684         | 0.1976    | 0.0736      | 0.0189  |
-| 15       | Fake dating                      | 650          | 0.3295    | 0.1324      | 0.0088  |
-| 18       | Artistic Pursuits                | 1488         | 0.1983    | 0.1356      | 0.0     |
-| 19       | Reunion                          | 1176         | 0.2095    | 0.0814      | 0.0321  |
+Now that we analyzed plot clichés, what about the personas? We can actually use the exact same methodology as before. 
 
-| Question | Question Theme               | Pairs Number | SMD Value    | Coefficient | P-Value |
-|-----------------|-----------------------------|------------------|--------|-------------|---------|
-| 0               | **Interrupted wedding**         | 576              | 0.0002 | -0.1431     | 0.0077  |
-| 1               | Best friends to lovers       | 303              | 0.0016 | -0.03       | 0.6631  |
-| 2               | Enemies to lovers            | 196              | 0.0002 | -0.1071     | 0.2242  |
-| 3               | **Social status**                | 274              | 0.0202 | 0.2212      | 0.0046  |
-| 4               | Serious illness              | 226              | 0.0058 | -0.054      | 0.4964  |
-| 5               | Love at first sight           | 127              | 0.0033 | -0.0488     | 0.6624  |
-| 6               | *Meet-cute*                    | 304              | 0.0007 | -0.1171     | 0.1063  |
-| 7               | Break up                     | 259              | 0.0005 | -0.0158     | 0.843   |
-| 8               | One night stand              | 119              | 0.0032 | 0.0513      | 0.6365  |
-| 9               | Different relationships      | 251              | 0.0018 | -0.0179     | 0.8163  |
-| 10              | **Love triangle**                | 254              | 0.0023 | -0.3035     | 0.0001  |
-| 11              | Sad ending                   | 127              | 0.0016 | 0.0898      | 0.4022  |
-| 12              | LGBT+                         | 155              | 0.0011 | 0.1116      | 0.2794  |
-| 13              | Infidelity                   | 320              | 0.002  | 0.0403      | 0.5258  |
-| 14              | Dating as a bet              | 152              | 0.0023 | -0.0125     | 0.897   |
-| 15              | Fake dating                  | 114              | 0.0029 | -0.1719     | 0.1406  |
-| 16              | *Bad boy*                      | 384              | 0.001  | -0.1003     | 0.1035  |
-| 17              | Holiday                      | 159              | 0.0048 | -0.0025     | 0.9805  |
-| 18              | Regretful empowered woman   | 394              | 0.0023 | 0.0607      | 0.3456  |
-| 19              | Reunion                      | 237              | 0.0016 | -0.054      | 0.5031  |
+Recall the previous plot : it seemed like some personas actually have an impact on the ratings, right?
+Let’s make it sure! Following the same procedure as for the plot clichés, we perform a matched study testing the effect of presence for each persona, this time, by matching on the most common personas.
+As shown in the plot below, we can observe that some personas do have a causal impact on the ratings! The woman detective would on average increase the overall rating of the movie, contrary to the attractive newcomer. It is also interesting that people would prefer the drama queen, as it’s a rather standard archetype.
 
-<!-- <iframe src="./assets/persona.html" width="800" height="600"></iframe> -->
-
-But look at that! It seems there is some significant influence of persona on the ratings, right? Let’s make sure. Following the same procedure for all personas, we can isolate for the most significant persona (i.e. persona 2, 4, 8, 12, 19). As shown below, we can observe that some personas do have an impact on the ratings! 
-
-[table]
+| Persona | Persona Name | Number of Pairs| SMD Votes | SMD Year | Coefficient | P-Value   |
+|-----------|--------------------------------|--------------|-----------|----------|-------------|-----------|
+| 4 | Drama Woman |279          | 0.0725    | 0.2533   | 0.3168      | 0.0       |
+| 8 | Attractive Newcomer |911          | 0.0323    | 0.1427   | -0.1613     | 0.0001    |
+| 12 | Talkative Best Friend |1004         | 0.0726    | 0.1575   | -0.1672     | 0.0001    |
+| 13 | Detective Woman |148          | 0.0511    | 0.134    | 0.3182      | 0.0027    |
 
 
-#### WHAT IF LOVE WAS ABOUT TIMING?
-###### or when to release a romance movie
-
-Regression doesn't seem to work that well, even though we could extract a significant negative correlation between the release year and the rating. Maybe it is because the audience changes over time, and so does their taste? Let us have a look at the evolution of the ratings over time. Is there a specific time of the year when people are more likely to watch a romance movie? A specific year in which some trope or persona is more popular? If we plot the average positive answers over time, we can observe that besides before the years 1920 -- where there are not enough movies to have a significant average -- the average positive answers are quite stable over time. Interrupted weddings, despite being significantly correlated with lower ratings, is still the most common trope throughout time.
-
-<!-- interactive plot inserted directly in the html file -->
-<iframe src="./assets/average_answer_over_time.html" width="800" height="600"></iframe>
-
-What about persona evolution? The following plot illustrates the distribution of the most common persona over time, from the year 1930 as prior to that year the movies are not numerous enough for relevant statistics, and over the most common six persona, which are the persona 2, 4, 8, 12, 15, 19. They are the ones that were found significant, how about that for a coincidence? The same persona allow to explain around 80% of the characters consistently over the years. However, some tendencies revert: persona 2 which was predominant in the years 40-50 seem to leave more space to persona 12 over time. The war context may be in cause, as persona 2 includes criminal activities, a context of suspense in life movement and discoveries. 
-
-<iframe src="./assets/common_personas_over_time_normalize.html" width="800" height="600"></iframe>
-
-<!-- <iframe src="./assets/personas_over_time_all_together.html" width="800" height="600"></iframe> -->
-<!-- NOTE: removed the second plot because redundant with the first. I like being able to chose but it's good to have an overview for all -->
-<!-- <iframe src="./assets/personas_over_time_dropdown_menu.html" width="800" height="600"></iframe> -->
 
 
 #### MIRROR, MIRROR ON THE WALL, WHO IS THE MOST ACCURATE OF ALL?
 ###### or why using GPT 3.5 may be a bad idea
 
-By considering ethics in our project, we aim to highlight ethical dilemmas and recognize the limitations, implications, and biases in our use of data. Firstly, we can critique film databases, emphasizing flaws such as sexism and a lack of ethnic diversity. Sexism can be explained by the fact that most producers, writers, cinematographers, and editors are men, leading to caricatural representations of women. Similarly, the lack of diversity results in an overrepresentation of Western and white individuals. This correlation is evident not only on screen but also among those who participate in the film evaluation process through voting. In the article "Gender, writing and ranking in review forums: a case study of the IMDb" (Otterbacher, 2013), significant gender-based differences in critics' activity become apparent. Male critics show a stronger involvement compared to their female counterparts (with an average five times higher for men), and male comments are more appreciated by users. IMDb thus appears as a platform demonstrating a distinctly masculine orientation. However, we must question the representativeness of the article's conclusions for our analysis since we focused solely on romance films without examining the gender of the individuals voting. 
+By considering ethics in our project, we aim to highlight ethical dilemmas and recognize the limitations, implications, and biases in our use of data. First, considering the fairness of our study, we can critique film databases, emphasizing flaws such as sexism and a lack of ethnic diversity. Sexism can be explained by the fact that most producers, writers, cinematographers, and editors are men, leading to caricatural representations of women. Similarly, the lack of diversity results in an overrepresentation of Western and white individuals. This correlation is evident not only on screen but also among those who participate in the film evaluation process through voting. In the article "Gender, writing and ranking in review forums: a case study of the IMDb" (Otterbacher, 2013), significant gender-based differences in critics' activity become apparent. Male critics show a stronger involvement compared to their female counterparts (with an average five times higher for men), and male comments are more appreciated by users. IMDb thus appears as a platform demonstrating a distinctly masculine orientation. 
 
-A second critical point in our data concerns the use of GPT. GPT provided us with results of highly variable quality for the films we were able to verify. A significant portion of the responses is indeed subject for debate because some movies focus on multiple love stories or only have romance as a subplot. Some responses are not necessarily incorrect but up for debate. The answers are allowed only to consist of yes or no, instead some responses are context dependent.  Thus, our answers may be considered inconsistent and unreliable for drawing real conclusions. A last point to add to our ethical considerations is that our GPT-based responses required the use of servers and thus the consumption of resources, which may pose a sustainability issue as it would constantly need to be updated.
+A second critical point in our data concerns the use of GPT. GPT provided us with results of highly variable quality for the films we were able to verify. A significant portion of the responses is indeed subject for debate because some movies focus on multiple love stories or only have romance as a subplot. Some responses are not necessarily incorrect but up for debate. The answers are allowed only to consist of yes or no, instead some responses are context dependent.  Thus, our answers may be considered inconsistent and unreliable for drawing real conclusions. An additional point to add to our ethical considerations is that our GPT-based responses required the use of servers and thus the consumption of resources. The last point is that since our project is about movies, if we were to keep up with more recent data (the data collection was stopped in 2012), it would pose a sustainability issue as the dataset and research would constantly need to be updated.
 
 
 #### HOW CAN WE MAKE THE PERFECT ROMANCE MOVIE?
 ###### or turns out, it's not that easy
 
-We all know romance movies and their clichés. We like them to be what we expect. But maybe that's not all. Maybe it isn't enough to know the trope, the archetypes for the persona, the timing, the associated genres and even a combination of all of these.
-Predicting the ending of a movie is easier than predicting its success. Even if we explain at best 26% of the variance of the ratings, we can't explain it all. There may be no universal perfect love story. Everyone loves a different plot at a different time, and that's actually not so surprising. 
-People and their tastes are difficult to anticipate, and that doesn’t mean that what we’ve found is unfruitful!
+We all know romance movies and their clichés. We like them to be what we expect. But maybe that's not all. Maybe it isn't enough to know the tropes, the archetypes for the personas, the timing, the associated genres…
 
-Globally, we can still conclude a few things: first of all, despite some significant difference, the ratings for the different tropes are still pretty similar. This is probably a group effect consequence: people will tend to follow the first few votes about a movie. 
-As for the results, it seems like love triangles and weddings stopped at the altar tend to annoy the audience more. Perhaps it gets boring, always seeing these two clichés ? Weddings stopped at the altar are indeed often mocked in movies (think about Shrek).
-On the contrary, we seem to really enjoy impossible romances. Is it because of fate? Do we take pride in seeing lovers torn apart by this cruel world?
+Predicting the ending of a movie is easier than predicting its success ! Even if we explain at best 26% of the variance of the ratings, we can't explain it all. There may be no universal perfect love story. Everyone loves a different plot at a different time, and that's actually not so surprising. People and their tastes are difficult to anticipate, and that doesn’t mean that what we’ve found is unfruitful!
 
-TODO
+In the end, we can still conclude a few things. First of all, we notice that even on clichés or personas with significant impacts, the regression coefficient is quite “low” and mostly due to global movie characteristics (around 0.3). Ratings always remain in a “reasonable” range. This suggests that there is no huge impacting factor. This is perhaps a consequence of group effect: people tend to follow the first few votes about a movie. 
+
+As for the results, a small summary seems necessary : 
+- Love triangles and weddings stopped at the altar tend to annoy the audience. They are very common, and perhaps became boring? 
+- The audience seems to really enjoy impossible romances. Is it because of fate? Do we take pleasure in seeing lovers torn apart by this cruel world?
+- The classic Drama Woman persona is positively correlated with the ratings. We surely all enjoy seeing a drama queen fall in love! 
+- The Attractive Newcomer persona has a bad influence on the ratings. Maybe is it an incentive to never move out? 
+- The Talkative Bestfriend persona also tends to be bad for the movies. And for sure, we all hate this annoying and awkward friend that often breaks the romance with their unfunny jokes.
+- The Woman Detective persona has a lot of success! Who would object? We love gruesome murders, we love intense romance, what could possibly go wrong when mixing these two?
+- TODO
+
+
+
