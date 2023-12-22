@@ -10,10 +10,12 @@ excerpt: ""
 
 Who doesn't love falling in love? Especially when you can do it over and over again, by following actors on screen? We all have seen romance movies, but the simple fact that two people fall in or out of love with each other does not equal a good quality story. Paradoxically, an unoriginal story can be exactly what we want to watch. But then, what is it? Do we love these movies or do we hate them for being predictable?
 
-Let's get back to the basics. How do you evaluate whether a movie is liked? Ratings, obviously! Or box office revenue... Which is missing in 80% of the movies. As the correlation between the ratings and the box office revenue is weak, we will focus on the ratings as a success indicator. Bingo, that's a measure of love... Isn't it? For romance movies anyways. Take the CMU dataset, add a pinch of IMDB ratings, and you get a dataset with 11'599 movies having ratings and romance in their genres.
+Let's get back to the basics. How do you evaluate whether a movie is liked? Obviously, box office revenue… which, in the CMU dataset, is missing for 80% of the movies. Also, using box office revenue as a metric for quality is quite biased: usually when big studios release movies, a lot of people go watch them in theaters, whether they are good or not. A much better quality metric is people’s ratings! Bingo, that's a measure of love... Isn't it? For romance movies anyways. 
+
+Take the CMU dataset, add a pinch of IMDB ratings, and you get a dataset with around 8000 romance classified movies, along with their ratings.
 We are aware that users can only rate movies on IMDB only since 1990, but that might just get us a more modern perspective on the movies that came out before the 1990s.  
 
-And what if we could find magical ingredients that make a good romance movie? How many clichés are necessary, which archetypes make us watch, what recurring actions get us excited to finish the movie? Wouldn't you like to know? We do! Follow us along, while we try to uncover the secrets to romance by analyzing the plots and the personas individually and as a beautiful blend. 
+With all this data, what if we could find magical ingredients that make a good romance movie? How many clichés are necessary, which archetypes make us watch, what recurring actions get us excited to finish the movie? Wouldn't you like to know? We do! Follow us along, while we try to uncover the secrets to romance by analyzing the plots and the personas individually and as a beautiful blend. 
 
 <p><div style="text-align: center; margin: 0px;">
   <img src="./assets/logo.png" style="width: 100px;" alt="Logo">
@@ -22,12 +24,12 @@ And what if we could find magical ingredients that make a good romance movie? Ho
 #### ROMANCE, ROMANCE?
 ###### or the preprocessing story
 
-From the CMU dataset we have information on the movies themselves, some of their characters and the plot summaries. For this study, as mentioned before, we focus on romantic movies as many movies independent of genre contain at least one romantic subplot. We can thus use movies containing romance in their genres. But is it enough?
+From the CMU dataset we have information on the movies themselves, some of their characters and the plot summaries. For this study, as mentioned before, we focus on romantic movies as many movies, independent of genre, contain at least one romantic subplot. We can thus use movies containing romance in their genres. But is it enough?
 
 Love is in the air for most movies, this is why for this analysis we try to discriminate between movies with some romantic subplot and movies where romance is the protagonist.
 
 The plot summaries might not contain all the necessary information about the plots to answer our most burning questions. Here is where the GPT-3.5 API comes to the rescue. GPT is trained on the entirety of the internet, this likely includes the summaries that are in the CMU dataset. Let’s take advantage of this instead of using an approximate word detection from the summaries. 
-We asked it questions about plot elements (such as "*Is there a best friend to lovers trope ?*" or "*Is there an empowered woman having regrets ?*") and obtained binary answers. 
+We asked it questions about plot elements (such as "*Is there a best friend to lovers trope?*" or "*Is there an empowered woman having regrets?*") and obtained binary answers. 
 
 Is GPT trustworthy? Mostly yes, but let’s examine a concrete example.
 In the romance domain, there are quite a lot of tropes that are used over and over again. Some of them, GPT3.5 simply could not answer because they were too ambiguous, so we tried changing these questions as we wanted yes or no answers. But just like situationships, even the almost all-knowing GPT3.5 could not decide correctly. Other times, we would disagree with GPTs answers, but then the justifications made sense. For instance, let's take one of the greatest romance movies: *The Notebook*. It could contain lots of different tropes: enemies to lovers, a grand reunion, and a sad ending. But the enemies to lovers in this movie was one sided as the male protagonist Noah was immediately infatuated with Allie. From his perspective it was love at first sight, therefore answering yes or no to either question could be considered correct. 
@@ -41,7 +43,7 @@ Remember when we said that we want to differentiate between romantic subplots an
 Now that we have the tropes, let’s see whether we can find personas!  What if we could extract the common archetypes for the characters in the movies from the summaries? For example, is there a best friend with no purpose beside providing advice on the romantic life of the protagonist? What about the emotionally unavailable character, hiding a soft heart underneath many layers of deception?
 Let's get some help here. Luckily, this has been done in [Bamman, O'Connor and Smith, "Learning Latent Personas of Film Characters" (ACL 2013)](http://aclweb.org/anthology/P/P13/P13-1035.pdf).
 
-The technique is called Latent Dirichlet Allocation, or LDA in short. This is a common unsupervised learning technique used over text data. In essence, its task is to extract the most important "topics" over a corpus. Topics can thus be represented as distributions over the vocabulary. The technique is again applied on the topics, yielding "personas", ie. distributions over the topics ! The topics, which were classified with chat GPT and our imaginations, are presented in the table below. 
+The technique is called Latent Dirichlet Allocation, or LDA in short. This is a common unsupervised learning technique used over text data. In essence, its task is to extract the most important "topics" over a corpus. Topics can thus be represented as distributions over the vocabulary. The technique is again applied on the topics, yielding "personas", ie. distributions over the topics! The topics, which were classified with chat GPT and our imagination, are presented in the table below. 
 
 | Topic    |   Theme                                 |   Words                                             |
 |-------|---------------------------------------|---------------------------------------------------|
@@ -76,18 +78,26 @@ The technique is called Latent Dirichlet Allocation, or LDA in short. This is a 
 | 28    | Historical Context                   | girl, sister, king, prostitute, little, musketeer, diner, older, native, younger |
 | 29    | Life's Movements                     | go, meet, return, come, live, arrive, join, stay, work, visit |
 
-We also make a distinction between agents, patients and modifiee : an *agent* is something the persona does, a *patient* is what is done to the persona, and a *modifiee* are adjectives associated with the persona. For example, if we look at the most common topics in the agents of the personas, we can see that "Life's crossroads" is very rarely used among all 20 personas. In contrast, a lot of personas seem to be greatly characterized by “Life’s journeys” topics! !
+We also make a distinction between agents, patients and modifiee : an *agent* is something the persona does, a *patient* is what is done to the persona, and a *modifiee* are adjectives associated with the persona. For example, if we look at the most common topics in the agents of the personas, we can see that "Life's crossroads" is very rarely used among all 20 personas. In contrast, a lot of personas seem to be greatly characterized by “Life’s journeys” topics!
 
+To give a better idea, we provide an example of agents distributions over the most common topics.
 <iframe src="./assets/topic_distrib_agents.html" width="800" height="600"></iframe>
 
-A more concrete exemple, here, would be persona 12, which is the most common persona based on the plot below.
-- The agents involve words such as *tell, ask, love, give, meet*. 
-- The patients are (for example) *tell, love, call, talk, ask*
-- The modifiees are *best, friend, student*. 
-This persona, with a bit of imagination, could be described as the **talkative best friend**. They do not involve any life-changing topics in any of their appearances. Nonetheless, they are important because they help the main protagonist succeed in their love life!
+A more concrete exemple, would be persona 12.
+- The common agents are *tell, ask, love, give, meet*. 
+- The common patients are *tell, love, call, talk, ask*
+- The common modifiees are *best, friend, student*. 
 
-Following this methodology, let’s assign a type to the most used personas, as you can see in the table below.
+This persona, with a bit of imagination, could be described as the **Talkative Best Friend**. Compared to other personas, they do not endure life-changing topics in any of their appearances. Nonetheless, they are important as they help the main protagonist succeed in their love life!
 
+We can try and see which personas appear the most among the different characters.
+
+<iframe src="./assets/prop_characters_by_personas.html" width="800" height="600"></iframe>
+
+What stands out? It appears that the most common characters are 12 and 8. The least common character is 9. Only a few characters are well represented overall. 80% of the characters are associated with a persona within {2, 4, 8, 12, 15, 19}.
+
+
+Now that we know the common personas, we can, with the methodology used for the Talkative Best Friend,  assign a type to the most used personas, as you can see in the table below.
 | Persona | Representation | Agents | Patients | Modifiee |
 |---------|--------------------------|-------------------------------------|------------------------------------|--------------------------------------|
 | 2       | Adventurer    | 7, 22, 25, 6 | 5, 9, 26, 1 | 0, 11, 20, 4 |
@@ -98,9 +108,6 @@ Following this methodology, let’s assign a type to the most used personas, as 
 | 15      | Engaged Heart  | 25, 7, 6, 29 | 13, 7, 1, 9 | 23, 11, 0, 20 |
 | 19      | Action Hero   | 22, 16, 7, 29 | 5, 16, 9, 29 | 27, 0, 11, 4 |
 
-What stands out? It appears that the most common characters are 12 and 8. The least common character is 9. Only a few characters are well represented overall. 80% of the characters are associated with a persona within {2, 4, 8, 12, 15, 19}.
-
-<iframe src="./assets/prop_characters_by_personas.html" width="800" height="600"></iframe>
 
 
 #### TIME PASSES, BUT LOVE STAYS FOREVER
@@ -111,7 +118,7 @@ Audiences change  over time, and so does their taste. Let us have a look at the 
 <!-- interactive plot inserted directly in the html file -->
 <iframe src="./assets/average_answer_over_time.html" width="800" height="600"></iframe>
 
-What about the personas  evolution? The following plot illustrates the distribution of the most common persona over time, from the year 1930 as prior to that year the movies are not numerous enough for relevant statistics. We choose the six most common personas, {2, 4, 8, 12, 15, 19}, which represent roughly  80% of the characters. Note how some tendencies revert: persona 2 which was predominant in the 40s-50s seems to leave more space to persona 12 over time. Is this a hint at WWII? Persona 2 is associated with a need for mystery drama, discovery and criminal activities.
+What about the personas  evolution? The following plot illustrates the distribution of the most common persona over time, from the year 1930 as prior to that year the movies are not numerous enough for relevant statistics. We choose the six most common personas, {2, 4, 8, 12, 15, 19}, which represent roughly  80% of the characters. Note how some tendencies revert: persona 2 which was predominant in the 40s-50s seems to leave more space to persona 12 over time. Is this a hint at WWII? Note how persona 2 is associated with a need for mystery drama, discovery and criminal activities.
 
 <iframe src="./assets/common_personas_over_time_normalize.html" width="800" height="600"></iframe>
 
@@ -133,7 +140,7 @@ Similarly, we can compute these averages for the personas :
 
 However, is it everything? No! Recall the main antagonist of ADA, the *mean monkey*. If we learned one thing in the course, it certainly is not to trust averages. We can now dive deeper into the data.
 
-Let’s start unraveling! What is the influence of tropes on the ratings? What about the personas present in the movies? And what about the two of them as a couple (wink) ? A linear model might do the trick. Starting with a simple model, we include only the movie revenue, runtime, number of votes and release date. The results are tragic, a weak score of R<span class="superscript">2</span> score of 26.4%.  When we include our tropes results (GPT), it’s even worse. We overfit.  Not even a random forest can help. No simple model seems to be enough to explain love based on our questions! So predicting  the rating based on the trope is an unreachable dream…
+Let’s start unraveling! What is the influence of tropes on the ratings? What about the personas present in the movies? And what about the two of them as a couple (wink)? A linear model might do the trick. Starting with a simple model, we include only the movie revenue, runtime, number of votes and release date. The results are tragic, a weak score of R<span class="superscript">2</span> score of 26.4%.  When we include our tropes results (GPT), it’s even worse. We overfit.  Not even a random forest can help. No simple model seems to be enough to explain love based on our questions! So predicting  the rating based on the trope is an unreachable dream…
 
 | Model                | R<span class="superscript">2</span>   |
 |----------------------|-------|
@@ -148,11 +155,12 @@ As a take home message, the explained variance is not very high. Good news, we a
 
 However, the following variables were significant at the 5% level:   
 - The **number of votes**, positively correlated with the rating.
-- Questions 0, 3, 18, with respectively a negative, positive and positive correlation (although low for each question).
+- **Questions 0, 3, 18**, with respectively a negative, positive and positive correlation (although low for each question).
 - The **release date** of the movie, which negatively correlates with the ratings.
 - The **runtime** of the movie, also positively correlated with the rating.
+- **Persona 4, 8, 12, 13** with respectively positive, negative, negative and positive correlation (although low for each persona).
 
-We can at least draw one conclusion from this: the number of votes seem to significantly explain some variance in the ratings. For instance, as the following plot shows, movies with weddings stopped at the altar have a considerably lower number of votes, and they also have a lower score… That may be a problem. Or is it? 
+We can at least draw one conclusion from this: the number of votes seems to significantly explain some variance in the ratings. For instance, as the following plot shows, movies with weddings stopped at the altar have a considerably lower number of votes, and they also have a lower score… That may be a problem! Or not? 
 
 <iframe src="./assets/nb_votes_conf_int_questions.html" width="800" height="600"></iframe>
 
@@ -160,13 +168,13 @@ We can at least draw one conclusion from this: the number of votes seem to signi
 #### AND THAT’S A MATCH
 ###### or how to reduce the impact of observed covariates
 
-We have previously observed some statistically significant correlations. However, this remains an observational study, and movies have many confounders and a lot of variance. In order to get some conclusion out of this study, the movies themselves also should find love, following the principle of “*what belongs together comes together*”.
+We have previously observed some statistically significant correlations. However, this remains an observational study, and movies have many confounders and a lot of variance. In order to get some conclusions out of this study, we are gonna make movies fall in love with their matches, following the principle of “*what belongs together comes together*”.
 
 What kind of confounders are we looking at? The tropes can influence each other. Also, as seen in the previous regression, the number of votes is positively correlated with the rating.
-To reduce these confounders, we make an exact match on the most relevant clichés, and an approximate match on the number of votes.
+To reduce these confounders, let's marry off our movies based on their most relevant clichés. To ensure ultimate happiness in their couplings, we also match them approximately on their respective number of votes. 
 
-Weddings stopped at the altar then obtain significantly worse ratings with a negative impact on the rating prediction corresponding to the negative coefficient in the table below, with a p-value of **0.0001**! As for the other relevant questions, they are presented in the following table. The coefficient indicates the impact of the trope on the rating, its value being by how much the average rating increases or decreases when the condition is present or not.
-We can observe that seven clichés have a statistically significant (at a 95%-level) impact on ratings! (although the coefficients are low for each of them)
+Stopping a wedding and creating a heartthrob romance movie do not mingle well. The ratings are significantly worse (p-value of **0.0001**!). As for the other tropes, you might be more free to choose. The coefficients in the table indicate the impact of the trope on the rating, its value being by how much the average rating increases or decreases when the condition is present or not.
+We can observe that seven clichés actually influence our opinion on romance movies statistically (at a 95% CI-level)! (Although let’s not get ahead of ourselves, the coefficients are low for all  of them)
 
 | Question | Question Theme | Number of Pairs | SMD Votes | SMD Year | Coefficient | P-Value|
 |----------|----------------------------------|--------------|-----------|----------|-------------|-----------|
@@ -178,13 +186,13 @@ We can observe that seven clichés have a statistically significant (at a 95%-le
 | 18       | Regretful empowered woman | 1512         | 0.0198    | 0.0612   | 0.1356 | 0.0 |
 | 19       | Reunion                          | 1092         | 0.065     | 0.0119   | 0.0814      | 0.0321    |
 
-Now that we analyzed plot clichés, what about the personas? We can actually use the exact same methodology as before. 
-
+Maybe our love language is not acts of service or giving presents but rather spending quality time with our favorite characters? We can use the same methodology as before, but now on the personas. 
 Recall the previous plot : it seemed like some personas actually have an impact on the ratings, right?
+
 Let’s make it sure! Following the same procedure as for the plot clichés, we perform a matched study testing the effect of presence for each persona, this time, by matching on the most common personas.
 As shown in the plot below, we can observe that some personas do have a causal impact on the ratings! The woman detective would on average increase the overall rating of the movie, contrary to the attractive newcomer. It is also interesting that people would prefer the drama queen, as it’s a rather standard archetype.
 
-| Persona | Persona Name | Number of Pairs| SMD Votes | SMD Year | Coefficient | P-Value   |
+| Persona | Persona Name| Number of Pairs| SMD Votes | SMD Year | Coefficient | P-Value |
 |-----------|--------------------------------|--------------|-----------|----------|-------------|-----------|
 | 4 | Drama Woman |279          | 0.0725    | 0.2533   | 0.3168      | 0.0       |
 | 8 | Attractive Newcomer |911          | 0.0323    | 0.1427   | -0.1613     | 0.0001    |
@@ -207,9 +215,7 @@ A second critical point in our data concerns the use of GPT. GPT provided us wit
 
 We all know romance movies and their clichés. We like them to be what we expect. But maybe that's not all. Maybe it isn't enough to know the tropes, the archetypes for the personas, the timing, the associated genres…
 
-Predicting the ending of a movie is easier than predicting its success ! Even if we explain at best 26% of the variance of the ratings, we can't explain it all. There may be no universal perfect love story. Everyone loves a different plot at a different time, and that's actually not so surprising. People and their tastes are difficult to anticipate, and that doesn’t mean that what we’ve found is unfruitful!
-
-In the end, we can still conclude a few things. First of all, we notice that even on clichés or personas with significant impacts, the regression coefficient is quite “low” and mostly due to global movie characteristics (around 0.3). Ratings always remain in a “reasonable” range. This suggests that there is no huge impacting factor. This is perhaps a consequence of group effect: people tend to follow the first few votes about a movie. 
+Predicting the ending of a movie is easier than predicting its success! Even if we explain at best 26% of the variance of the ratings, we can't explain it all. There may be no universal perfect love story. Everyone loves a different plot at a different time, and that's actually not so surprising. People and their tastes are difficult to anticipate, and that doesn’t mean that what we’ve found is unfruitful!
 
 As for the results, a small summary seems necessary : 
 - Love triangles and weddings stopped at the altar tend to annoy the audience. They are very common, and perhaps became boring? 
@@ -218,7 +224,5 @@ As for the results, a small summary seems necessary :
 - The Attractive Newcomer persona has a bad influence on the ratings. Maybe is it an incentive to never move out? 
 - The Talkative Bestfriend persona also tends to be bad for the movies. And for sure, we all hate this annoying and awkward friend that often breaks the romance with their unfunny jokes.
 - The Woman Detective persona has a lot of success! Who would object? We love gruesome murders, we love intense romance, what could possibly go wrong when mixing these two?
-- TODO
 
-
-
+In the end, we were still able to make some interesting observations. However, one should note that even on clichés or personas with significant differences, the regression coefficient is quite “low” (around 0.3). Ratings always remain in a “reasonable” range. This suggests that there is no huge impacting factor. This might be a consequence of group effect: people tend to follow the first few votes about a movie. 
